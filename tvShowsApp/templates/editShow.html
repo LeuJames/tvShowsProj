@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Edit a Show</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous"></head>
+</head>
+<body>
+    <div class="container">
+        <div class="navbar navbar-expand bg-dark">
+            <ul class="navbar-nav">
+                <li class="nav-item active">
+                    <a class="navbar-brand" href="/shows">Home / All Shows</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link active" href="/shows/new">Add a New Show</a>
+                </li>
+            </ul>
+        </div>
+        <div class="jumbotron">
+            <h1>Edit Show #{{show.id}}</h1>
+                <div class="row">
+                    <div class="col">
+                        <h4>Current Information:</h4>
+                        <p>Old Title: {{show.title}}</p>
+                        <p>Old Network: {{show.network}}</p>
+                        <p>Old Release Date: {{show.release_date}}</p>
+                        <p>Old Description:</p>
+                        <textarea name="notes" rows="10" cols="30">{{show.desc}}</textarea> 
+                    </div>
+                    <div class="col">
+                        <h4>Update information using form below:</h4>
+                        <form action="/shows/{{show.id}}/update" method="POST">
+                            {% csrf_token %}
+                            <p>New Title: <input type="text" name="title"></p>
+                            <p>New Network: <input type="text" name="network"></p>
+                            <p>New Release Date: <input type="date" name="release_date"></p>
+                            <p>New Description:</p>
+                            <textarea name="desc" rows="10" cols="30"></textarea>
+                            <p><button type="Submit">Update</button></p> 
+                        </form>
+                    </div>
+                </div>
+        </div>
+    </div>
+</body>
+</html>

@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Shows</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous"></head>
+</head>
+<body>
+    <div class="container">
+        <div class="navbar navbar-expand bg-dark">
+            <ul class="navbar-nav">
+                <li class="nav-item active">
+                    <a class="navbar-brand" href="/shows">Home / All Shows</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link active" href="/shows/new">Add a New Show</a>
+                </li>
+            </ul>
+        </div>
+        <div class="jumbotron">
+            <h1>Welcome to my tv show database!!!</h1>
+            <h2>All Shows</h2>
+            <table class="table table-striped">
+                <thead class="thead-dark">
+                    <th scope="col">ID</th>
+                    <th scope="col">Title</th>
+                    <th scope="col">Network</th>
+                    <th scope="col">Release Date</th>
+                    <th scope="col">Actions</th>
+                </thead>
+                <tbody>
+                    {% for show in shows %}
+                    <tr>
+                        <th scope="col">{{show.id}}</td>
+                        <td>{{show.title}}</td>
+                        <td>{{show.network}}</td>
+                        <td>{{show.release_date}}</td>
+                        <td>
+                            <p><a href="/shows/{{show.id}}">Show</a> | <a href="/shows/{{show.id}}/edit">Edit</a> | <a href="/shows/{{show.id}}/destroy">Delete</a></p>
+                        </td>
+                    </tr>
+                    {% endfor %}
+                </tbody>
+        </div>
+    </div>
+</body>
+</html>
