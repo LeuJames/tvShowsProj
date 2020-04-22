@@ -20,28 +20,23 @@
         </div>
         <div class="jumbotron">
             <h1>Edit Show #{{show.id}}</h1>
-                <div class="row">
-                    <div class="col">
-                        <h4>Current Information:</h4>
-                        <p>Old Title: {{show.title}}</p>
-                        <p>Old Network: {{show.network}}</p>
-                        <p>Old Release Date: {{show.release_date}}</p>
-                        <p>Old Description:</p>
-                        <textarea name="notes" rows="10" cols="30">{{show.desc}}</textarea> 
-                    </div>
-                    <div class="col">
-                        <h4>Update information using form below:</h4>
-                        <form action="/shows/{{show.id}}/update" method="POST">
-                            {% csrf_token %}
-                            <p>New Title: <input type="text" name="title"></p>
-                            <p>New Network: <input type="text" name="network"></p>
-                            <p>New Release Date: <input type="date" name="release_date"></p>
-                            <p>New Description:</p>
-                            <textarea name="desc" rows="10" cols="30"></textarea>
-                            <p><button type="Submit">Update</button></p> 
-                        </form>
-                    </div>
-                </div>
+                <h4>Update information using form below:</h4>
+                {% if messages %}
+                    <ul class="messages">    
+                    {% for message in messages %}    
+                        <li {% if message.tags %} class="{{ message.tags }}"{% endif %}>{{ message }}</li>    
+                    {% endfor %}
+                    </ul>
+                {% endif %}            
+                <form action="/shows/{{show.id}}/update" method="POST">
+                    {% csrf_token %}
+                    <p>New Title: <input type="text" name="title" value="{{show.title}}"></p>
+                    <p>New Network: <input type="text" name="network" value="{{show.network}}"></p>
+                    <p>New Release Date: <input type="date" name="release_date" value="{{show.release_date}}"></p>
+                    <p>New Description:</p>
+                    <textarea name="desc" rows="10" cols="30">{{show.desc}}</textarea>
+                    <p><button type="Submit">Update</button></p> 
+                </form>
         </div>
     </div>
 </body>
